@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/allEmploys">
+
+    <fragment
+        android:id="@+id/allEmploys"
+        android:name="com.saadi.mvvmroomdb.view.fragments.AllEmploys"
+        android:label="fragment_all_employs"
+        tools:layout="@layout/fragment_all_employs" >
+        <action
+            android:id="@+id/action_allEmploys_to_createEmploy"
+            app:destination="@id/createEmploy" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEmploy"
+        android:name="com.saadi.mvvmroomdb.view.fragments.CreateEmploy"
+        android:label="fragment_create_employ"
+        tools:layout="@layout/fragment_create_employ" />
+</navigation>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="@dimen/_10sdp"
+    android:layout_margin="@dimen/_10sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_e_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            tools:text="E-321"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_employ_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            tools:text="Saad Asad"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="@id/tv_e_id"
+            app:layout_constraintTop_toBottomOf="@id/tv_e_id"/>
+
+        <TextView
+            android:id="@+id/tv_employ_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_e_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_e_id"
+            tools:text="+923070018830" />
+
+        <TextView
+            android:id="@+id/tv_employ_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            tools:text="saadasad.dev@yahoo.com"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="@id/tv_employ_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_employ_name"/>
+
+        <TextView
+            android:id="@+id/tv_employ_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            tools:text="Android"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="@id/tv_employ_number"
+            app:layout_constraintTop_toBottomOf="@id/tv_employ_number"/>
+
+        <TextView
+            android:id="@+id/tv_employ_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:maxLines="10"
+            android:text="@string/lorem"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_employ_department"
+            app:layout_constraintStart_toStartOf="@id/tv_employ_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_employ_mail" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
