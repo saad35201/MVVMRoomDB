@@ -9,14 +9,22 @@
         android:id="@+id/allEmploys"
         android:name="com.saadi.mvvmroomdb.view.fragments.AllEmploys"
         android:label="fragment_all_employs"
-        tools:layout="@layout/fragment_all_employs" >
+        tools:layout="@layout/fragment_all_employs">
         <action
             android:id="@+id/action_allEmploys_to_createEmploy"
-            app:destination="@id/createEmploy" />
+            app:destination="@id/createEmploy">
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/createEmploy"
         android:name="com.saadi.mvvmroomdb.view.fragments.CreateEmploy"
         android:label="fragment_create_employ"
-        tools:layout="@layout/fragment_create_employ" />
+        tools:layout="@layout/fragment_create_employ">
+        <argument
+            android:name="employArg"
+            app:nullable="true"
+            android:defaultValue="@null"
+            app:argType="com.saadi.mvvmroomdb.model.room.EmployEntity"/>
+    </fragment>
 </navigation>

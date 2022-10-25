@@ -10,11 +10,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.saadi.mvvmroomdb.R
 import com.saadi.mvvmroomdb.databinding.FragmentAllEmploysBinding
-import com.saadi.mvvmroomdb.model.room.EmployEntity
+import com.saadi.mvvmroomdb.utils.Helper
 import com.saadi.mvvmroomdb.view.adapter.EmploysAdapter
 import com.saadi.mvvmroomdb.viewmodel.EmployVM
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AllEmploys : Fragment() {
@@ -24,13 +23,11 @@ class AllEmploys : Fragment() {
     private lateinit var mBinding: FragmentAllEmploysBinding
 
     //viewModel
-    private val mEmployeeVM : EmployVM by viewModels()
+    private val mEmployeeVM: EmployVM by viewModels()
 
     //adapter and layout manager var
     private lateinit var mAdapter: EmploysAdapter
     private lateinit var mManager: LinearLayoutManager
-
-
 
 
     override fun onCreateView(
@@ -55,7 +52,16 @@ class AllEmploys : Fragment() {
 
             //employ item click listener
             mAdapter.onItemLongClick = {
-                mEmployeeVM.deleteEmploy(it)
+                with(Helper.Companion) {
+                    requireContext().showDeleteDialog(
+                        getString(R.string.delete_employ),
+                        deleteButton = { mEmployeeVM.deleteEmploy(it) },
+                        updateButton = {
+                            val action = AllEmploysDirections.actionAllEmploysToCreateEmploy(it)
+                            findNavController().navigate(action)
+                        }
+                    )
+                }
             }
         }
 

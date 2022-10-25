@@ -1,8 +1,11 @@
 package com.saadi.mvvmroomdb.model.room
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "employ")
 data class EmployEntity(
     @PrimaryKey(autoGenerate = true)
@@ -12,4 +15,4 @@ data class EmployEntity(
     val e_number : String,
     val e_mail : String,
     val e_department : String,
-    val e_detail : String)
+    val e_detail : String) : Parcelable
