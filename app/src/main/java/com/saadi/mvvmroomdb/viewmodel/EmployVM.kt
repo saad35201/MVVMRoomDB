@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.saadi.mvvmroomdb.model.repositoy.EmployRepository
-import com.saadi.mvvmroomdb.model.room.EmployEntity
+import com.saadi.mvvmroomdb.model.models.EmployModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,23 +15,23 @@ class EmployVM @Inject constructor(
     private val employRepository: EmployRepository
 ) : ViewModel() {
 
-    fun getEmploys(): LiveData<List<EmployEntity>> {
+    fun getEmploys(): LiveData<List<EmployModel>> {
         return employRepository.getEmploys()
     }
 
-    fun saveEmploy(employEntity: EmployEntity) {
+    fun saveEmploy(employEntity: EmployModel) {
         viewModelScope.launch(Dispatchers.IO) {
             employRepository.saveEmploy(employEntity)
         }
     }
 
-    fun updateEmploy(employEntity: EmployEntity) {
+    fun updateEmploy(employEntity: EmployModel) {
         viewModelScope.launch {
             employRepository.updateEmploy(employEntity)
         }
     }
 
-    fun deleteEmploy(employEntity: EmployEntity) {
+    fun deleteEmploy(employEntity: EmployModel) {
         viewModelScope.launch {
             employRepository.deleteEmploy(employEntity)
         }

@@ -4,24 +4,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.saadi.mvvmroomdb.databinding.RvEmployItemBinding
-import com.saadi.mvvmroomdb.model.room.EmployEntity
+import com.saadi.mvvmroomdb.model.models.EmployModel
 
-class EmploysAdapter(private val mList: List<EmployEntity>) :
+class EmploysAdapter(private val mList: List<EmployModel>) :
     RecyclerView.Adapter<EmploysAdapter.EmployViewHolder>() {
 
     //click listeners
-    var onItemClick : ((EmployEntity) -> Unit)? = null
-    var onItemLongClick : ((EmployEntity) -> Unit)? = null
+    var onItemClick : ((EmployModel) -> Unit)? = null
+    var onItemLongClick : ((EmployModel) -> Unit)? = null
 
     class EmployViewHolder(private val binding: RvEmployItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: EmployEntity) {
+        fun bind(item: EmployModel) {
             binding.tvEId.text = item.e_id
             binding.tvEmployName.text = item.e_name
             binding.tvEmployNumber.text = item.e_number
             binding.tvEmployMail.text = item.e_mail
             binding.tvEmployDepartment.text = item.e_department
-            binding.tvEmployDepartment.text = item.e_department
+            binding.tvEmployDetail.text = item.e_detail
         }
 
     }

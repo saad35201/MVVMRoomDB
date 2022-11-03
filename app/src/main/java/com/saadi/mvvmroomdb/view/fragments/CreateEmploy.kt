@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.saadi.mvvmroomdb.databinding.FragmentCreateEmployBinding
-import com.saadi.mvvmroomdb.model.room.EmployEntity
+import com.saadi.mvvmroomdb.model.models.EmployModel
 import com.saadi.mvvmroomdb.viewmodel.EmployVM
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,12 +23,11 @@ class CreateEmploy : Fragment() {
 
     //binding
     private lateinit var mBinding: FragmentCreateEmployBinding
-
     //viewModel
     private val mEmployeeVM: EmployVM by viewModels()
-
     //argument
-    private val mArgs :CreateEmployArgs? by navArgs()
+    private val mArgs: CreateEmployArgs? by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +43,7 @@ class CreateEmploy : Fragment() {
 
         //setting data in views
         mArgs?.let {
-            setData()
+            setData(it.employArg)
         }
 
         //btn save click listener
@@ -54,13 +53,13 @@ class CreateEmploy : Fragment() {
 
     }
 
-    private fun setData() {
-        mBinding.etEmployId.setText(mArgs?.employArg?.e_id)
-        mBinding.etEmployName.setText(mArgs?.employArg?.e_name)
-        mBinding.etEmployNumber.setText(mArgs?.employArg?.e_number)
-        mBinding.etEmployEmail.setText(mArgs?.employArg?.e_mail)
-        mBinding.etEmployDepartment.setText(mArgs?.employArg?.e_department)
-        mBinding.etEmployDetail.setText(mArgs?.employArg?.e_detail)
+    private fun setData(employArg: EmployModel?) {
+        mBinding.etEmployId.setText(employArg?.e_id)
+        mBinding.etEmployName.setText(employArg?.e_name)
+        mBinding.etEmployNumber.setText(employArg?.e_number)
+        mBinding.etEmployEmail.setText(employArg?.e_mail)
+        mBinding.etEmployDepartment.setText(employArg?.e_department)
+        mBinding.etEmployDetail.setText(employArg?.e_detail)
     }
 
     private fun saveEmploy() {
@@ -71,23 +70,21 @@ class CreateEmploy : Fragment() {
         val department = mBinding.etEmployDepartment.text.toString()
         val detail = mBinding.etEmployDetail.text.toString()
 
-        //employ object
-        val employEntity = EmployEntity(
-            0,
-            id,
-            name,
-            number,
-            email,
-            department,
-            detail
-        )
-
-        //updating employ
         mArgs?.let {
-            it.employArg?.let { it1 -> mEmployeeVM.updateEmploy(it1) }
+            //employ object
+            val updateEmploy = it.employArg?.id?.let { it1 -> EmployModel(it1, id, name, number, email, department, detail) }
+            //updating employ
+            it.employArg?.let {
+                if (updateEmploy != null) {
+                    mEmployeeVM.updateEmploy(updateEmploy)
+                }
+            }
+        } ?:run {
+            //employ object
+            val newEmploy = EmployModel(0, id, name, number, email, department, detail)
+            //saving new employ
+            mEmployeeVM.saveEmploy(newEmploy)
         }
-        //saving new employ
-        mEmployeeVM.saveEmploy(employEntity)
         findNavController().navigateUp()
 
     }

@@ -79,7 +79,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_7sdp"
             android:maxLines="10"
-            android:text="@string/lorem"
+            tools:text="@string/lorem"
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
